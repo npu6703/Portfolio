@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+  <!-- font kit -->
+  <script src="https://kit.fontawesome.com/8dee267b78.js" crossorigin="anonymous"></script>
+  <title>Personal Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="header">
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="#header">Home</a></li>
+          <li><a href="#about">About me</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#resume">Resume</a></li>
+          <li><a href="#contact">Contact Information</a></li>
+        </ul>
+      </nav>
+      <div class="header-text"> 
+        <h1>Hi, I'm <span>Quinn</span> <br> Nguyen!</h1>
+        <!-- <p> I am a Computer Science junior in University of Houston</p> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- about -->
+  <div id="about">
+    <div class="container">
+        <div class="row">
+          <div class="about-col-1">
+            <h1 class="sub-title">About me</h1>
+            <p>I am a student at the University of Houston, Texas and I'm majoring in Computer Science.
+             
+            </p>
+            <p>I am passionate in math and science. Even though I don't have a lot of experiences in programming, I eager to build on a strong foundation in solving problems, data structure, and algorithms. During my free time, I like 
+              to capture pictures in nature and people, I also like cooking and reading romantic books. 
+               </p>
+          </div>
+          <div class="about-col-2">
+            
+            <div class="tab-titles">
+              <p class="tab-links active-link" onclick="opentab('experience')">Experience</p>
+              <p class="tab-links active-link" onclick="opentab('education')">Education</p>
+            </div>
+            <div class="tab-contents active-tab" id="experience">
+              <ul>
+                <li><span> Math Tutor </span> 2022-2024 <br> Lone Star College </li>
+              </ul>
+            </div>
+            <div class="tab-contents eduction" id="education">
+              <ul>
+                <li><span> Associate of Science </span> 2024 <br> Graduated from Lone Star College </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- Projects -->
+  <div id="projects">
+    <div class="container">
+      <h1 class="sub-title"> Projects</h1>
+      <div class="projects-list">
+        <div> 
+          <!-- <i class="fa-solid fa-file-shield"></i> -->
+          <h2>
+            <a href="../nail-website_project/index.html">Project 1</a>
+          </h2></div>
+          
+        <div> 
+          <!-- <i class="fa-solid fa-file-shield"></i> -->
+          <h2>
+            <a href="../../CPP/Inventory-project/main.cpp">Project 2</a>
+          </h2></div>
+        <div> 
+          <!-- <i class="fa-solid fa-file-shield"></i> -->
+          <h2>Project 3</h2></div>
+    
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Contact Information -->
+    <div id="contact">
+        <div class="container"> 
+          <div class="row">
+            <div class="contact-left">
+              <h1 class="sub-title"> Contact me</h1>
+              <p><i class="fa-solid fa-envelope"></i> contact@email.com</p>
+              <p><i class="fa-solid fa-phone"></i> 098844322</p>
+              <div class="social-icons">
+                <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+                <a href=""><i class="fa-brands fa-instagram"></i></a>
+                <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                <a href=""><i class="fa-brands fa-github"></i></a>
+              </div>
+            </div>
+            <div class="contact-right">
+              <form name="submit-to-google-sheet">
+                <input type="text" name="Name"  placeholder="Your Name" required>
+                <input type="email" name="Email"  placeholder="Your Email" required>
+                <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                <button type="submit" class="btn">Submit</button>
+              </form>
+              <span id="msg"></span>
+            </div>
+        </div>
+    </div>
+
+  <!-- Resume -->
+  <div id="resume">
+    <!-- btn is button  -->
+    <a href="pictures/grad.jpg" download class="btn"> Download Resume</a> 
+  </div>
+
+  <script>
+
+    var tablinks = document.getElementsByClassName('tab-links'); 
+    var tabcontents = document.getElementsByClassName('tab-contents'); 
+   
+    function opentab(tabname){
+      for(tablink of tablinks){
+        tablink.classList.remove("active-link");
+      }
+
+      for(tabcontent of tabcontents){
+        tabcontent.classList.remove("active-tab");
+      }
+      event.currentTarget.classList.add("active-link"); 
+      document.getElementById(tabname).classList.add("active-tab"); 
+    }
+  </script>
+
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzTYxOYUBGm3bUcbbobvVFewwKP07-cG58-6WFV1yjaSkaKFCG21ICKYvtmfjqDjiJVTg/exec'
+  const form = document.forms['submit-to-google-sheet']
+  const msg = document.getElementById("msg")
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        msg.innerHTML = "Message sent successfully"
+        setTimeout(function(){
+          msg.innerHTML =""
+        }, 5000)
+        form.reset()
+      })
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
+
+</body>
+</html>
